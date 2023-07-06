@@ -46,16 +46,16 @@ class ViewController: UIViewController {
             let rawAccelerationData = AccelerationDataModel(x: x, y: y, z: z)
             let convertedAccelerationValue = accelerationDataManager.convertToMeterPerSecondSquared(data: rawAccelerationData)
             print("Converted data: \(convertedAccelerationValue)")
-            
-            xLabel.text = String(format: "%.2f", convertedAccelerationValue.x)
-            yLabel.text = String(format: "%.2f", convertedAccelerationValue.y)
-            zLabel.text = String(format: "%.2f", convertedAccelerationValue.z)
+            xLabel.text = "x " + String(format: "%.1f", convertedAccelerationValue.x) + "m/s²"
+            yLabel.text = "y " + String(format: "%.1f", convertedAccelerationValue.y) + "m/s²"
+            zLabel.text = "z " + String(format: "%.1f", convertedAccelerationValue.z) + "m/s²"
         }
     }
     
     @IBAction func checkPressed(_ sender: UIButton) {
         print("Call backend")
         motionManager.stopAccelerometerUpdates()
+        speedLabel.text = "खोज कर बताऊंगा"
     }
     
     deinit {
