@@ -15,28 +15,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-UW-woL" userLabel="Main View">
-                                <rect key="frame" x="128" y="342" width="158" height="212"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="hn4-UW-woL" userLabel="Main View">
+                                <rect key="frame" x="141.5" y="383" width="131" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="m1z-uB-kjF" userLabel="Data Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="158" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sv9-X2-Efg">
-                                                <rect key="frame" x="0.0" y="0.0" width="79" height="36"/>
+                                                <rect key="frame" x="0.0" y="2" width="65.5" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dc-HE-dUi">
-                                                <rect key="frame" x="79" y="0.0" width="79" height="36"/>
+                                                <rect key="frame" x="65.5" y="2" width="65.5" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeA-Ip-FAP" userLabel="Check Button">
-                                        <rect key="frame" x="0.0" y="86" width="158" height="40"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BeA-Ip-FAP" userLabel="Check Button">
+                                        <rect key="frame" x="0.0" y="90" width="131" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="OdG-Pd-zz3"/>
@@ -46,32 +46,46 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wwd-I0-Ffa"/>
+                                        </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are fast!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-ia-YAL" userLabel="Speed Label">
-                                        <rect key="frame" x="0.0" y="176" width="158" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="m1z-uB-kjF" firstAttribute="centerX" secondItem="hn4-UW-woL" secondAttribute="centerX" id="5d8-QC-bnt"/>
                                     <constraint firstItem="BeA-Ip-FAP" firstAttribute="centerX" secondItem="hn4-UW-woL" secondAttribute="centerX" id="Ddr-gJ-sX3"/>
-                                    <constraint firstItem="9YJ-ia-YAL" firstAttribute="centerX" secondItem="hn4-UW-woL" secondAttribute="centerX" id="Wun-lO-ipU"/>
                                 </constraints>
                             </stackView>
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch Check button to show speed status Touch Check button to show speed status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="20" showsExpansionTextWhenTruncated="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9YJ-ia-YAL" userLabel="Speed Label">
+                                <rect key="frame" x="20" y="533" width="374" height="343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9YJ-ia-YAL" firstAttribute="top" secondItem="hn4-UW-woL" secondAttribute="bottom" constant="20" id="36B-UD-ovK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9YJ-ia-YAL" secondAttribute="trailing" constant="20" id="8He-ma-Lp2"/>
                             <constraint firstItem="hn4-UW-woL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B4K-w5-p7e"/>
+                            <constraint firstAttribute="bottom" secondItem="9YJ-ia-YAL" secondAttribute="bottom" constant="20" id="I3u-Ol-zM3"/>
+                            <constraint firstItem="9YJ-ia-YAL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PRP-AR-pGu"/>
                             <constraint firstItem="hn4-UW-woL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="goe-w4-iQO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="speedLabel" destination="9YJ-ia-YAL" id="g2v-LZ-eQO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="4"/>
+            <point key="canvasLocation" x="75.362318840579718" y="3.3482142857142856"/>
         </scene>
     </scenes>
 </document>
