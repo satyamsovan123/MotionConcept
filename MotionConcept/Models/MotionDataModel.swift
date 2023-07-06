@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AccelerationDataModel {
+struct MotionDataModel {
     let x: Double
     let y: Double
     let z: Double

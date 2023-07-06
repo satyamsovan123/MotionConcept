@@ -17,46 +17,34 @@ class ViewController: UIViewController {
     
     var motionManager = CMMotionManager()
     
-    var accelerationDataManager = AccelerationDataManager()
+    var motionDataManager = MotionDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        motionManager.accelerometerUpdateInterval = 0.1
+        motionManager.deviceMotionUpdateInterval = 0.1
         
-        if(motionManager.isAccelerometerAvailable) {
-             print("Accelerometer is available")
+        if(motionManager.isDeviceMotionAvailable) {
+             print("Motion sensors are available")
             speedLabel.text = "Do something, fool!"
-            motionManager.startAccelerometerUpdates(to: .main, withHandler: updateAccelerometerData)
+            motionManager.startDeviceMotionUpdates(to: .main, withHandler: updateMotionData)
         } else {
-            print("Accelerometer is not available")
+            print("Motion sensors are not available")
             let randomNumber = Int.random(in: 2..<9)
-            speedLabel.text = "I've searched \(randomNumber) times for an accelerometer, and never found one."
+            speedLabel.text = "I've searched \(randomNumber) times for any motion sensors, and I never found one."
         }
     }
 
-    func updateAccelerometerData(data: CMAccelerometerData?, error: Error?) -> Void {
+    func updateMotionData(data: CMDeviceMotion?, error: Error?) -> Void {
         if let errorData: Error = error {
             print("Error: \(errorData)")
         }
-        
-        if let accelerometerData: CMAccelerometerData = data {
-            let x: Double = accelerometerData.acceleration.x
-            let y: Double = accelerometerData.acceleration.y
-            let z: Double = accelerometerData.acceleration.z
-            let rawAccelerationData = AccelerationDataModel(x: x, y: y, z: z)
-            let convertedAccelerationValue = accelerationDataManager.convertToMeterPerSecondSquared(data: rawAccelerationData)
-            
-            print("Converted data: \(convertedAccelerationValue)")
-            xLabel.text = "x " + String(format: "%.1f", convertedAccelerationValue.x) + "m/s²"
-            yLabel.text = "y " + String(format: "%.1f", convertedAccelerationValue.y) + "m/s²"
-            zLabel.text = "z " + String(format: "%.1f", convertedAccelerationValue.z) + "m/s²"
-        }
-    }
-    
-    func startDeviceMotionUpdates(to queue: OperationQueue, withHandler handler: @escaping CMDeviceMotionHandler) {
+        print(data)
         
     }
     
+//    func startDeviceMotiosnUpdates() {
+//        
+
     @IBAction func checkPressed(_ sender: UIButton) {
         print("Call backend")
         motionManager.stopAccelerometerUpdates()
@@ -65,7 +53,7 @@ class ViewController: UIViewController {
     
     deinit {
         print("Deinitializing: Stop receiving accelerometer data")
-        motionManager.stopAccelerometerUpdates()
+        motionManager.stopDeviceMotionUpdates()
     }
     
 }
