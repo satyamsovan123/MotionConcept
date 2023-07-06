@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         motionManager.accelerometerUpdateInterval = 0.1
         
         if(motionManager.isAccelerometerAvailable) {
-            print("Accelerometer is available")
+             print("Accelerometer is available")
             speedLabel.text = "Do something, fool!"
             motionManager.startAccelerometerUpdates(to: .main, withHandler: updateAccelerometerData)
         } else {
@@ -45,11 +45,16 @@ class ViewController: UIViewController {
             let z: Double = accelerometerData.acceleration.z
             let rawAccelerationData = AccelerationDataModel(x: x, y: y, z: z)
             let convertedAccelerationValue = accelerationDataManager.convertToMeterPerSecondSquared(data: rawAccelerationData)
+            
             print("Converted data: \(convertedAccelerationValue)")
             xLabel.text = "x " + String(format: "%.1f", convertedAccelerationValue.x) + "m/s²"
             yLabel.text = "y " + String(format: "%.1f", convertedAccelerationValue.y) + "m/s²"
             zLabel.text = "z " + String(format: "%.1f", convertedAccelerationValue.z) + "m/s²"
         }
+    }
+    
+    func startDeviceMotionUpdates(to queue: OperationQueue, withHandler handler: @escaping CMDeviceMotionHandler) {
+        
     }
     
     @IBAction func checkPressed(_ sender: UIButton) {
