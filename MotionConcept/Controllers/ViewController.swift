@@ -8,34 +8,67 @@
 import UIKit
 import CoreMotion
 
-
+// MARK: - UIViewController
 class ViewController: UIViewController {
     
-    @IBOutlet weak var adviceLabel: UILabel!
     @IBOutlet weak var sensorOutputLabel: UILabel!
     
-    var motionManager = MotionManager()
+    var motionService = MotionService()
+    
+    var pedometerLabel: String = ""
+    var motionActivityLabel: String = ""
+    var accelerometerLabel: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        motionManager.initializeMotionManager()
-        motionManager.initializeMotionActivityManager()
-        motionManager.initializePedometer()
+        motionService.delegate = self
+        motionService.initializeMotionManager()
+        motionService.initializeMotionActivityManager()
+        motionService.initializePedometer()
     }
     
     @IBAction func checkPressed(_ sender: UIButton) {
-        print("Call backend")
-        adviceLabel.text = "You're moving too fast!"
-        motionManager.motionManager.stopDeviceMotionUpdates()
-        motionManager.motionActivityManager.stopActivityUpdates()
-        motionManager.stopAllUpdates()
+        // TODO: Call backed
+        motionService.stopAllUpdates()
     }
     
     deinit {
         print("Deinitializing: Stop receiving data")
-        motionManager.stopAllUpdates()
+        motionService.stopAllUpdates()
     }
     
+    func updateLabel() {
+        DispatchQueue.main.async {
+            let label: String = "\(self.motionActivityLabel) \(self.accelerometerLabel) \(self.pedometerLabel)"
+            print(label)
+            self.sensorOutputLabel.text = label
+            
+        }
+    }
+}
+
+// MARK: - MotionServiceDelegate
+extension ViewController: MotionServiceDelegate {
+    func didUpdatePedometerData(_ motionManager: MotionService, data: String) {
+        // TODO: Update UI
+        pedometerLabel = data
+        updateLabel()
+    }
     
+    func didUpdateAccelerometerData(_ motionManager: MotionService, data: String) {
+        // TODO: Update UI
+        accelerometerLabel = data
+        updateLabel()
+    }
     
+    func didUpdateMotionActivityData(_ motionManager: MotionService, data: String) {
+        // TODO: Update UI
+        motionActivityLabel = data
+        updateLabel()
+    }
+    
+    func didFailedWithError(error: Error) {
+        // TODO: Handle error
+        print(error)
+    }
 }

@@ -8,15 +8,19 @@
 import Foundation
 import CoreMotion
 
-protocol MotionManagerDelegate {
-    func didUpdateMotionData(_ motionManager: MotionManager, motionData: MotionDataModel)
+protocol MotionServiceDelegate {
+    func didUpdateAccelerometerData(_ motionManager: MotionService, data: String)
+    func didUpdateMotionActivityData(_ motionManager: MotionService, data: String)
+    func didUpdatePedometerData(_ motionManager: MotionService, data: String)
     func didFailedWithError(error: Error)
 }
 
-struct MotionManager {
+struct MotionService {
+    
+    var delegate: MotionServiceDelegate?
+    
+    // MARK: - CMMotionManager
     var motionManager = CMMotionManager()
-    var motionActivityManager = CMMotionActivityManager()
-    var pedometer = CMPedometer()
     
     func initializeMotionManager() -> Void {
         motionManager.deviceMotionUpdateInterval = 0.1
@@ -36,30 +40,36 @@ struct MotionManager {
         }
         if let safeData = data {
             // print("Magents: \(safeData.attitude) ")
-            let motionData = MotionDataModel(userAccelerationX: safeData.userAcceleration.x, userAccelerationY: safeData.userAcceleration.y, userAccelerationZ: safeData.userAcceleration.z)
-            // print(motionData.getSensorDataLabel())
+            let accelerationData = AccelerationDataModel(userAccelerationX: safeData.userAcceleration.x, userAccelerationY: safeData.userAcceleration.y, userAccelerationZ: safeData.userAcceleration.z)
+            let data: String = accelerationData.getLabel()
+            delegate?.didUpdateAccelerometerData(self, data: data)
         }
     }
+    
+    // MARK: - CMMotionActivityManager
+    var motionActivityManager = CMMotionActivityManager()
     
     func initializeMotionActivityManager() -> Void {
         if(CMMotionActivityManager.isActivityAvailable()) {
             print("Motion activity data is available")
             motionActivityManager.startActivityUpdates(to: .main, withHandler: updateMotionActivityData)
-            print("okay")
         } else {
             print("Motion activity data is not available")
         }
     }
     
     func updateMotionActivityData(data: CMMotionActivity?) -> Void {
-        if let safeData = data {
-            DispatchQueue.main.async {
-                print(safeData)
-            }
+        if let safeData = data {            
+            let motionActivityData: MotionActivityDataModel = MotionActivityDataModel(confidence: safeData.confidence.rawValue, isStationary: safeData.stationary, isWalking: safeData.walking, isUnknown: safeData.unknown, isRunning: safeData.running, isAutomotive: safeData.automotive)
+            delegate?.didUpdateMotionActivityData(self, data: motionActivityData.getLabel())
+            
         } else {
-            print("Error in motion activity: ")
+            print("Error in motion activity")
         }
     }
+    
+    // MARK: - CMPedometer
+    var pedometer = CMPedometer()
     
     func initializePedometer() -> Void {
         if(CMPedometer.isStepCountingAvailable()) {
@@ -76,10 +86,12 @@ struct MotionManager {
             return
         }
         if let safeData = data {
-            print(safeData)
+            let pedometerData: PedometerDataModel = PedometerDataModel(numberOfSteps: safeData.numberOfSteps)
+            delegate?.didUpdatePedometerData(self, data: pedometerData.getLabel())
         }
     }
     
+    // MARK: - Stop Updates
     func stopAllUpdates() -> Void {
         motionManager.stopDeviceMotionUpdates()
         motionActivityManager.stopActivityUpdates()
