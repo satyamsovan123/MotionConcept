@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSMotionUsageDescription</key>
-	<string>We will take your data and sell it 😈.</string>
+	<string>We need this iPhone's motion data like number of steps, your rate of change of speed etc. for showing you the details.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

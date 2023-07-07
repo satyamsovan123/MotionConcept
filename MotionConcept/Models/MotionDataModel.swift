@@ -8,13 +8,13 @@
 import Foundation
 
 struct MotionDataModel {
-    let x: Double
-    let y: Double
-    let z: Double
+    let userAccelerationX: Double
+    let userAccelerationY: Double
+    let userAccelerationZ: Double
     
-    init(x: Double, y: Double, z: Double) {
-        self.x = x
-        self.y = y
-        self.z = z
+    init(userAccelerationX: Double, userAccelerationY: Double, userAccelerationZ: Double) {
+        self.userAccelerationX = userAccelerationX
+        self.userAccelerationY = userAccelerationY
+        self.userAccelerationZ = userAccelerationZ
     }
 }

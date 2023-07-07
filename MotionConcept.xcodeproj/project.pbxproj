@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E91A9A3F2A56FB6200C2DD39 /* MotionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A9A3E2A56FB6200C2DD39 /* MotionDataManager.swift */; };
 		E997BCA32A5693AB00E42578 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E997BCA22A5693AB00E42578 /* AppDelegate.swift */; };
 		E997BCA52A5693AB00E42578 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E997BCA42A5693AB00E42578 /* SceneDelegate.swift */; };
 		E997BCA72A5693AB00E42578 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E997BCA62A5693AB00E42578 /* ViewController.swift */; };
 		E997BCAA2A5693AB00E42578 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E997BCA82A5693AB00E42578 /* Main.storyboard */; };
 		E997BCAC2A5693AC00E42578 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E997BCAB2A5693AC00E42578 /* Assets.xcassets */; };
 		E997BCAF2A5693AC00E42578 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E997BCAD2A5693AC00E42578 /* LaunchScreen.storyboard */; };
+		E99E33062A58880900196DED /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E33052A58880900196DED /* MotionManager.swift */; };
 		E9B45BC22A569CAE00EA7EF8 /* MotionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B45BC12A569CAE00EA7EF8 /* MotionDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E91A9A3E2A56FB6200C2DD39 /* MotionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDataManager.swift; sourceTree = "<group>"; };
 		E997BC9F2A5693AB00E42578 /* MotionConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E997BCA22A5693AB00E42578 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E997BCA42A5693AB00E42578 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +26,7 @@
 		E997BCAB2A5693AC00E42578 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E997BCAE2A5693AC00E42578 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E997BCB02A5693AC00E42578 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E99E33052A58880900196DED /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		E9B45BC12A569CAE00EA7EF8 /* MotionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,8 +91,8 @@
 		E9B45BC32A569CB300EA7EF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E99E33052A58880900196DED /* MotionManager.swift */,
 				E9B45BC12A569CAE00EA7EF8 /* MotionDataModel.swift */,
-				E91A9A3E2A56FB6200C2DD39 /* MotionDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,9 +169,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E997BCA72A5693AB00E42578 /* ViewController.swift in Sources */,
+				E99E33062A58880900196DED /* MotionManager.swift in Sources */,
 				E9B45BC22A569CAE00EA7EF8 /* MotionDataModel.swift in Sources */,
 				E997BCA32A5693AB00E42578 /* AppDelegate.swift in Sources */,
-				E91A9A3F2A56FB6200C2DD39 /* MotionDataManager.swift in Sources */,
 				E997BCA52A5693AB00E42578 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +322,7 @@
 				DEVELOPMENT_TEAM = 699B45TF7E;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MotionConcept/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "We will take your data and sell it 😈.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -350,6 +351,7 @@
 				DEVELOPMENT_TEAM = 699B45TF7E;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MotionConcept/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "We will take your data and sell it 😈.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
