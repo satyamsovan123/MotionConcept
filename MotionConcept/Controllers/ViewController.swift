@@ -28,7 +28,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func checkPressed(_ sender: UIButton) {
-        // TODO: Call backed
+        // TODO: Call backend
+        // TODO: Create a segue on press, display some data on the segued view
+        // TODO: Create a websocket to accept key features
         motionService.stopAllUpdates()
     }
     
@@ -40,9 +42,8 @@ class ViewController: UIViewController {
     func updateLabel() {
         DispatchQueue.main.async {
             let label: String = "\(self.motionActivityLabel) \(self.accelerometerLabel) \(self.pedometerLabel)"
-            print(label)
+            // print(label)
             self.sensorOutputLabel.text = label
-            
         }
     }
 }
@@ -50,19 +51,16 @@ class ViewController: UIViewController {
 // MARK: - MotionServiceDelegate
 extension ViewController: MotionServiceDelegate {
     func didUpdatePedometerData(_ motionManager: MotionService, data: String) {
-        // TODO: Update UI
         pedometerLabel = data
         updateLabel()
     }
     
     func didUpdateAccelerometerData(_ motionManager: MotionService, data: String) {
-        // TODO: Update UI
         accelerometerLabel = data
         updateLabel()
     }
     
     func didUpdateMotionActivityData(_ motionManager: MotionService, data: String) {
-        // TODO: Update UI
         motionActivityLabel = data
         updateLabel()
     }

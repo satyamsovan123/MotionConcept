@@ -15,6 +15,14 @@ protocol MotionServiceDelegate {
     func didFailedWithError(error: Error)
 }
 
+// ???: - Delete this extension
+extension MotionServiceDelegate {
+    func didUpdateAccelerometerData(_ motionManager: MotionService, data: String) { print(data) }
+    func didUpdateMotionActivityData(_ motionManager: MotionService, data: String) { print(data) }
+    func didUpdatePedometerData(_ motionManager: MotionService, data: String) { print(data) }
+    func didFailedWithError(error: Error) { print(error) }
+}
+
 struct MotionService {
     
     var delegate: MotionServiceDelegate?
