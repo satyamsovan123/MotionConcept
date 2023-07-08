@@ -14,7 +14,7 @@
 		E997BCAC2A5693AC00E42578 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E997BCAB2A5693AC00E42578 /* Assets.xcassets */; };
 		E997BCAF2A5693AC00E42578 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E997BCAD2A5693AC00E42578 /* LaunchScreen.storyboard */; };
 		E99E33062A58880900196DED /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E33052A58880900196DED /* MotionService.swift */; };
-		E9B45BC22A569CAE00EA7EF8 /* AccelerationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B45BC12A569CAE00EA7EF8 /* AccelerationDataModel.swift */; };
+		E9B45BC22A569CAE00EA7EF8 /* CustomMotionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B45BC12A569CAE00EA7EF8 /* CustomMotionDataModel.swift */; };
 		E9FB40AD2A589FDF009667CA /* PedometerDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FB40AC2A589FDF009667CA /* PedometerDataModel.swift */; };
 		E9FB40B12A58A315009667CA /* MotionActivityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FB40B02A58A315009667CA /* MotionActivityDataModel.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +29,7 @@
 		E997BCAE2A5693AC00E42578 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E997BCB02A5693AC00E42578 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E99E33052A58880900196DED /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
-		E9B45BC12A569CAE00EA7EF8 /* AccelerationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationDataModel.swift; sourceTree = "<group>"; };
+		E9B45BC12A569CAE00EA7EF8 /* CustomMotionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMotionDataModel.swift; sourceTree = "<group>"; };
 		E9FB40AC2A589FDF009667CA /* PedometerDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerDataModel.swift; sourceTree = "<group>"; };
 		E9FB40B02A58A315009667CA /* MotionActivityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionActivityDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				E99E33052A58880900196DED /* MotionService.swift */,
-				E9B45BC12A569CAE00EA7EF8 /* AccelerationDataModel.swift */,
+				E9B45BC12A569CAE00EA7EF8 /* CustomMotionDataModel.swift */,
 				E9FB40AC2A589FDF009667CA /* PedometerDataModel.swift */,
 				E9FB40B02A58A315009667CA /* MotionActivityDataModel.swift */,
 			);
@@ -176,7 +176,7 @@
 			files = (
 				E997BCA72A5693AB00E42578 /* ViewController.swift in Sources */,
 				E99E33062A58880900196DED /* MotionService.swift in Sources */,
-				E9B45BC22A569CAE00EA7EF8 /* AccelerationDataModel.swift in Sources */,
+				E9B45BC22A569CAE00EA7EF8 /* CustomMotionDataModel.swift in Sources */,
 				E9FB40AD2A589FDF009667CA /* PedometerDataModel.swift in Sources */,
 				E997BCA32A5693AB00E42578 /* AppDelegate.swift in Sources */,
 				E9FB40B12A58A315009667CA /* MotionActivityDataModel.swift in Sources */,

@@ -12,6 +12,7 @@ protocol MotionServiceDelegate {
     func didUpdateAccelerometerData(_ motionManager: MotionService, data: String)
     func didUpdateMotionActivityData(_ motionManager: MotionService, data: String)
     func didUpdatePedometerData(_ motionManager: MotionService, data: String)
+    func didUpdateHeadphoneData(_ motionManager: MotionService, data: String)
     func didFailedWithError(error: Error)
 }
 
@@ -20,6 +21,7 @@ extension MotionServiceDelegate {
     func didUpdateAccelerometerData(_ motionManager: MotionService, data: String) { print(data) }
     func didUpdateMotionActivityData(_ motionManager: MotionService, data: String) { print(data) }
     func didUpdatePedometerData(_ motionManager: MotionService, data: String) { print(data) }
+    func didUpdateHeadphoneData(_ motionManager: MotionService, data: String) { print(data) }
     func didFailedWithError(error: Error) { print(error) }
 }
 
@@ -48,8 +50,8 @@ struct MotionService {
         }
         if let safeData = data {
             // print("Magents: \(safeData.attitude) ")
-            let accelerationData = AccelerationDataModel(userAccelerationX: safeData.userAcceleration.x, userAccelerationY: safeData.userAcceleration.y, userAccelerationZ: safeData.userAcceleration.z)
-            let data: String = accelerationData.getLabel()
+            let accelerationData = CustomMotionDataModel(userAccelerationX: safeData.userAcceleration.x, userAccelerationY: safeData.userAcceleration.y, userAccelerationZ: safeData.userAcceleration.z, headphonePitch: 0.0, headphoneRoll: 0.0, headphoneYaw: 0.0)
+            let data: String = accelerationData.getAccelerationLabel()
             delegate?.didUpdateAccelerometerData(self, data: data)
         }
     }
@@ -99,10 +101,39 @@ struct MotionService {
         }
     }
     
+    // MARK: - CMHeadphone
+    var headphoneMotionManager = CMHeadphoneMotionManager()
+    
+    func initializeHeadPhoneMotionManager() -> Void {
+        let isDeviceMotionAvailable = headphoneMotionManager.isDeviceMotionAvailable
+        if(isDeviceMotionAvailable) {
+            print("Headphone motion is available")
+            headphoneMotionManager.startDeviceMotionUpdates(to: .main, withHandler: updateHeadphoneManagerData)
+        } else {
+            print("Headphone motion is not available")
+        }
+    }
+    
+    func updateHeadphoneManagerData(data: CMDeviceMotion?, error: Error?) -> Void {
+        if(error != nil) {
+            print("Error in headphone motion: \(error)")
+            return
+        }
+        if let safeData = data {
+            // print(safeData.attitude)
+            // yes - yaw
+            // pitch - no
+            var headphoneAttitudeData = CustomMotionDataModel(userAccelerationX: 0.0, userAccelerationY: 0.0, userAccelerationZ: 0.0, headphonePitch: safeData.attitude.pitch, headphoneRoll: safeData.attitude.roll, headphoneYaw: safeData.attitude.yaw)
+            var data: String = headphoneAttitudeData.getHeadphoneAttitudeLabel()
+            delegate?.didUpdateHeadphoneData(self, data: data)
+        }
+    }
+    
     // MARK: - Stop Updates
     func stopAllUpdates() -> Void {
         motionManager.stopDeviceMotionUpdates()
         motionActivityManager.stopActivityUpdates()
         pedometer.stopUpdates()
+        headphoneMotionManager.stopDeviceMotionUpdates()
     }
 }

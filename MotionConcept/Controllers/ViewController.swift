@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var pedometerLabel: String = ""
     var motionActivityLabel: String = ""
     var accelerometerLabel: String = ""
+    var headphoneLabel: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
         motionService.initializeMotionManager()
         motionService.initializeMotionActivityManager()
         motionService.initializePedometer()
+        motionService.initializeHeadPhoneMotionManager()
     }
     
     @IBAction func checkPressed(_ sender: UIButton) {
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
     
     func updateLabel() {
         DispatchQueue.main.async {
-            let label: String = "\(self.motionActivityLabel) \(self.accelerometerLabel) \(self.pedometerLabel)"
+            let label: String = "\(self.motionActivityLabel) \(self.accelerometerLabel) \(self.pedometerLabel) \(self.headphoneLabel)"
             // print(label)
             self.sensorOutputLabel.text = label
         }
@@ -62,6 +64,11 @@ extension ViewController: MotionServiceDelegate {
     
     func didUpdateMotionActivityData(_ motionManager: MotionService, data: String) {
         motionActivityLabel = data
+        updateLabel()
+    }
+    
+    func didUpdateHeadphoneData(_ motionManager: MotionService, data: String) {
+        headphoneLabel = data
         updateLabel()
     }
     
