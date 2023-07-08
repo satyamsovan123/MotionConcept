@@ -124,7 +124,7 @@ struct MotionService {
             // yes - yaw
             // pitch - no
             var headphoneAttitudeData = CustomMotionDataModel(userAccelerationX: 0.0, userAccelerationY: 0.0, userAccelerationZ: 0.0, headphonePitch: safeData.attitude.pitch, headphoneRoll: safeData.attitude.roll, headphoneYaw: safeData.attitude.yaw)
-            var data: String = headphoneAttitudeData.getHeadphoneAttitudeLabel()
+            let data: String = headphoneAttitudeData.getHeadphoneAttitudeLabel()
             delegate?.didUpdateHeadphoneData(self, data: data)
         }
     }

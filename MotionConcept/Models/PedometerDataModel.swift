@@ -23,7 +23,7 @@ struct PedometerDataModel {
     }
     
     func getLabel() -> String {
-        let sensorDataLabel: String = "You have moved \(formattedNumberOfSteps) steps yet."
+        let sensorDataLabel: String = "You have moved \(formattedNumberOfSteps) steps."
         return sensorDataLabel
     }
 

@@ -57,12 +57,27 @@ struct CustomMotionDataModel {
     }
     
     mutating func getHeadphoneAttitudeLabel() -> String {
-        let sensorDataLabel: String = "\(formatData(headphonePitch))"
-        print("P: \(formatData(headphonePitch)), OP: \(previousHeadphonePitch)") // Yes?
+        var sensorDataLabel: String = "Possibly you said"
+        let differenceInPitch: Double = abs(previousHeadphonePitch - headphonePitch)
+        let pitchRange: ClosedRange<Double> = -0.9 ... 0.3
+        let pitchDifferenceRange: ClosedRange<Double> = 0.3 ... 0.9
+        let computedYes: Bool = ((pitchRange.contains(headphonePitch)) && (pitchDifferenceRange.contains(differenceInPitch)))
+
+        let differenceInYaw: Double = abs(previousHeadphoneYaw - headphoneYaw)
+        let yawRange: ClosedRange<Double> = -1 ... 1
+        let yawDifferenceRange: ClosedRange<Double> = 0.1 ... 0.8
+        let computedNo: Bool = ((yawRange.contains(headphoneYaw)) && (yawDifferenceRange.contains(differenceInYaw)))
+        
+        if(computedYes == true) {
+            sensorDataLabel = "\(sensorDataLabel) yes."
+        } else if(computedNo == true) {
+            sensorDataLabel = "\(sensorDataLabel) no."
+        } else {
+            sensorDataLabel = "\(sensorDataLabel) nothing."
+        }
+
         previousHeadphonePitch = headphonePitch
-        print("Diff: \(previousHeadphonePitch - headphonePitch)")
-//        print("Y: \(formatData(headphoneYaw))") // No?
-//        print("R: \(formatData(headphoneRoll))")
+        previousHeadphoneYaw = headphoneYaw
         return sensorDataLabel
     }
 }
